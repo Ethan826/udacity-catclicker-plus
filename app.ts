@@ -1,5 +1,4 @@
 /// <reference path="./typings/jquery/jquery.d.ts"/>
-
 $(document).ready(function(){
 
   class Cat {
@@ -36,43 +35,34 @@ $(document).ready(function(){
     }
   }
 
+  var cat1 = new Cat("Grumpy", "cat1", "http://i.dailymail.co.uk/i/pix/2014/08/05/1407225932091_wps_6_SANTA_MONICA_CA_AUGUST_04.jpg");
+  var cat2 = new Cat("Happy", "cat2", "http://dc541.4shared.com/img/CNrXLjwN/s7/13cd1fd1a38/happy-cat.jpg");
+  var cat3 = new Cat("Dopey", "cat3", "http://s-ak.buzzfed.com/static/enhanced/terminal01/2010/5/28/13/enhanced-buzz-7552-1275066424-6.jpg");
+  var cat4 = new Cat("Scary", "cat3", "http://i233.photobucket.com/albums/ee173/charbo187/cute-funny-animals-30.jpg");
+  var cat5 = new Cat("Stuck", "cat3", "https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg");
+  var catArray = [cat1, cat2, cat3, cat4, cat5];
+
   class Page {
 
-    buildPage(cats: Cat[]) {
-      for(var i = 0; i < cats.length; ++i) {
-        (function(index){
-          let cat = cats[index];
-          let catId = cat.getId();
-          let catName = cat.getName();
-          let imgSrc = cat.getImgSrc();
-          let clicks = cat.getNumClicks();
+    private cats: Cat[];
 
-          let templateString =
-          `<div id=${catId}>
-          <div class="name"><h2>${catName}</h2></div>
-          <div class="pic"><img width="400" src="${imgSrc}"></div>
-          <div class="clicks"><h3>Total clicks: <span class="count">${clicks}</span></h3></div>
-          </div>`;
-
-          $("#cats").append(templateString);
-          $(`#${catId}`).find("img").click(function(){
-            cat.setNumClicks(cat.getNumClicks() + 1);
-            $(`#${catId}`).find(".count").text(cat.getNumClicks());
-          });
-
-        })(i);
-      }
+    buildDropDown(): void {
+      this.cats.forEach(function(cat){
+        $("#cat-list").append(`<option value=${cat.getId()}>${cat.getName()}</option>`)
+      });
     }
 
-  constructor(cats: Cat[]) {
-    this.buildPage(cats);
+    constructor(cats: Cat[]) {
+      this.cats = cats;
+      this.buildDropDown();
+    }
   }
-}
 
-var cat1 = new Cat("Grumpy", "cat1", "./grumpy.jpg");
-var cat2 = new Cat("Happy", "cat2", "./happy.jpg");
-var catArray = [cat1, cat2];
-
-var page: Page = new Page(catArray);
+var page = new Page(catArray);
 
 });
+
+
+// names.forEach(function(n){
+//   console.log($("#cat-list").append(`<option>${n}</option>`));
+// });

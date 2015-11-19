@@ -23,31 +23,23 @@ $(document).ready(function () {
         };
         return Cat;
     })();
+    var cat1 = new Cat("Grumpy", "cat1", "http://i.dailymail.co.uk/i/pix/2014/08/05/1407225932091_wps_6_SANTA_MONICA_CA_AUGUST_04.jpg");
+    var cat2 = new Cat("Happy", "cat2", "http://dc541.4shared.com/img/CNrXLjwN/s7/13cd1fd1a38/happy-cat.jpg");
+    var cat3 = new Cat("Dopey", "cat3", "http://s-ak.buzzfed.com/static/enhanced/terminal01/2010/5/28/13/enhanced-buzz-7552-1275066424-6.jpg");
+    var cat4 = new Cat("Scary", "cat3", "http://i233.photobucket.com/albums/ee173/charbo187/cute-funny-animals-30.jpg");
+    var cat5 = new Cat("Stuck", "cat3", "https://i.ytimg.com/vi/tntOCGkgt98/maxresdefault.jpg");
+    var catArray = [cat1, cat2, cat3, cat4, cat5];
     var Page = (function () {
         function Page(cats) {
-            this.buildPage(cats);
+            this.cats = cats;
+            this.buildDropDown();
         }
-        Page.prototype.buildPage = function (cats) {
-            for (var i = 0; i < cats.length; ++i) {
-                (function (index) {
-                    var cat = cats[index];
-                    var catId = cat.getId();
-                    var catName = cat.getName();
-                    var imgSrc = cat.getImgSrc();
-                    var clicks = cat.getNumClicks();
-                    var templateString = "<div id=" + catId + ">\n          <div class=\"name\"><h2>" + catName + "</h2></div>\n          <div class=\"pic\"><img width=\"400\" src=\"" + imgSrc + "\"></div>\n          <div class=\"clicks\"><h3>Total clicks: <span class=\"count\">" + clicks + "</span></h3></div>\n          </div>";
-                    $("#cats").append(templateString);
-                    $("#" + catId).find("img").click(function () {
-                        cat.setNumClicks(cat.getNumClicks() + 1);
-                        $("#" + catId).find(".count").text(cat.getNumClicks());
-                    });
-                })(i);
-            }
+        Page.prototype.buildDropDown = function () {
+            this.cats.forEach(function (cat) {
+                $("#cat-list").append("<option value=" + cat.getId() + ">" + cat.getName() + "</option>");
+            });
         };
         return Page;
     })();
-    var cat1 = new Cat("Grumpy", "cat1", "./grumpy.jpg");
-    var cat2 = new Cat("Happy", "cat2", "./happy.jpg");
-    var catArray = [cat1, cat2];
     var page = new Page(catArray);
 });
