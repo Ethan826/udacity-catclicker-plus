@@ -17,7 +17,7 @@ $(document).ready(function(){
     getId = ():string => { return this.id; };
     getName = (): string => { return this.name; };
     getImgSrc = (): string => { return this.imgSrc; };
-    getNumClicks = (): number => { return this.numClicks; }
+    getNumClicks = (): number => { return this.numClicks; };
     setNumClicks = (num: number): void => { this.numClicks += 1; };
   }
 
@@ -49,6 +49,7 @@ $(document).ready(function(){
       this.cats = cats;
       this.buildDropDown();
       this.activeCat = cats[Math.floor((Math.random() * cats.length))];
+      this.renderActiveCat();
     }
 
     private fetchCatById(id: string): Cat {
@@ -70,7 +71,14 @@ $(document).ready(function(){
     }
 
     private renderActiveCat(): void {
-/* Put the active cat on the page (call by constructor, too) */
+      let cat = this.activeCat;
+      let name = cat.getName();
+      let imgSrc = cat.getImgSrc();
+      let numClicks = cat.getNumClicks();
+
+    /* build this, but maybe remove the other stuff */  
+
+      //console.log($(".result").text());
     }
   }
 

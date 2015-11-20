@@ -25,6 +25,7 @@ $(document).ready(function () {
             this.cats = cats;
             this.buildDropDown();
             this.activeCat = cats[Math.floor((Math.random() * cats.length))];
+            this.renderActiveCat();
         }
         Page.prototype.buildDropDown = function () {
             var catList = $("#cat-list");
@@ -56,6 +57,10 @@ $(document).ready(function () {
             }
         };
         Page.prototype.renderActiveCat = function () {
+            var cat = this.activeCat;
+            var name = cat.getName();
+            var imgSrc = cat.getImgSrc();
+            var numClicks = cat.getNumClicks();
         };
         return Page;
     })();
