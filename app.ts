@@ -14,25 +14,11 @@ $(document).ready(function(){
       this.numClicks = 0;
     }
 
-    getId(): string {
-      return this.id;
-    }
-
-    getName(): string {
-      return this.name;
-    }
-
-    getImgSrc(): string {
-      return this.imgSrc;
-    }
-
-    getNumClicks(): number {
-      return this.numClicks;
-    }
-
-    setNumClicks(num: number) {
-      this.numClicks += 1;
-    }
+    getId = ():string => { return this.id; };
+    getName = (): string => { return this.name; };
+    getImgSrc = (): string => { return this.imgSrc; };
+    getNumClicks = (): number => { return this.numClicks; }
+    setNumClicks = (num: number): void => { this.numClicks += 1; };
   }
 
   var cat1 = new Cat("Grumpy", "cat1", "http://i.dailymail.co.uk/i/pix/2014/08/05/1407225932091_wps_6_SANTA_MONICA_CA_AUGUST_04.jpg");
