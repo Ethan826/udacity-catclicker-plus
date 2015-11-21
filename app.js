@@ -1,4 +1,3 @@
-/// <reference path="./typings/jquery/jquery.d.ts"/>
 $(document).ready(function () {
     var Cat = (function () {
         function Cat(name, id, imgSrc) {
@@ -35,6 +34,7 @@ $(document).ready(function () {
             this.cats = cats;
             this.buildDropDown();
             this.activeCat = cats[Math.floor((Math.random() * cats.length))];
+            this.renderActiveCat();
         }
         Page.prototype.buildDropDown = function () {
             var catList = $("#cat-list");
@@ -44,7 +44,7 @@ $(document).ready(function () {
             });
             catList.change(function () {
                 self.activeCat = self.fetchCatById($(this).val());
-                console.log(self.activeCat);
+                self.renderActiveCat();
             });
         };
         Page.prototype.fetchCatById = function (id) {
@@ -66,6 +66,14 @@ $(document).ready(function () {
             }
         };
         Page.prototype.renderActiveCat = function () {
+            var cat = this.activeCat;
+            var text = "<h2>" + cat.getName() + "</h2>\n                  <img id=" + cat.getId() + " src=\"" + cat.getImgSrc() + "\">\n                  <h3 class=\"clicks\">" + cat.getNumClicks() + "</h3>";
+            $(".cat-area").html(text);
+            var handle = $("#" + cat.getId());
+            handle.click(function () {
+                cat.setNumClicks(cat.getNumClicks() + 1);
+                $(".clicks").text(cat.getNumClicks());
+            });
         };
         return Page;
     })();
