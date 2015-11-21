@@ -1,26 +1,17 @@
 $(document).ready(function () {
     var Cat = (function () {
         function Cat(name, id, imgSrc) {
+            var _this = this;
+            this.getId = function () { return _this.id; };
+            this.getName = function () { return _this.name; };
+            this.getImgSrc = function () { return _this.imgSrc; };
+            this.getNumClicks = function () { return _this.numClicks; };
+            this.setNumClicks = function (num) { _this.numClicks += 1; };
             this.name = name;
             this.id = id;
             this.imgSrc = imgSrc;
             this.numClicks = 0;
         }
-        Cat.prototype.getId = function () {
-            return this.id;
-        };
-        Cat.prototype.getName = function () {
-            return this.name;
-        };
-        Cat.prototype.getImgSrc = function () {
-            return this.imgSrc;
-        };
-        Cat.prototype.getNumClicks = function () {
-            return this.numClicks;
-        };
-        Cat.prototype.setNumClicks = function (num) {
-            this.numClicks += 1;
-        };
         return Cat;
     })();
     var cat1 = new Cat("Grumpy", "cat1", "http://i.dailymail.co.uk/i/pix/2014/08/05/1407225932091_wps_6_SANTA_MONICA_CA_AUGUST_04.jpg");
