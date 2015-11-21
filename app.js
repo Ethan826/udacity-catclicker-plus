@@ -67,7 +67,7 @@ $(document).ready(function () {
         };
         Page.prototype.renderActiveCat = function () {
             var cat = this.activeCat;
-            var text = "<h2>" + cat.getName() + "</h2>\n                  <img id=" + cat.getId() + " src=\"" + cat.getImgSrc() + "\">\n                  <h3 class=\"clicks\">" + cat.getNumClicks() + "</h3>";
+            var text = "<h2>" + cat.getName() + "</h2>\n                  <img width=400 id=" + cat.getId() + " src=\"" + cat.getImgSrc() + "\">\n                  <h3 class=\"clicks\">" + cat.getNumClicks() + "</h3>";
             $(".cat-area").html(text);
             var handle = $("#" + cat.getId());
             handle.click(function () {

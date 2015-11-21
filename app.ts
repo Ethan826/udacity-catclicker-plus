@@ -87,7 +87,7 @@ $(document).ready(function(){
     private renderActiveCat(): void {
       let cat = this.activeCat;
       let text = `<h2>${cat.getName()}</h2>
-                  <img id=${cat.getId()} src="${cat.getImgSrc()}">
+                  <img width=400 id=${cat.getId()} src="${cat.getImgSrc()}">
                   <h3 class="clicks">${cat.getNumClicks()}</h3>`;
       $(".cat-area").html(text);
       let handle = $(`#${cat.getId()}`);
